@@ -1,116 +1,209 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <title>Thiệp Cưới | Trương Anh Tuấn & Hoàng Thị Mai Anh</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style thiep.css">
+<meta charset="UTF-8">
+<title>Thiệp Cưới | Anh Tuấn & Mai Anh</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="style1.css">
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Pacifico&display=swap" rel="stylesheet">
 </head>
 <body>
+   
+<audio id="bgMusic" src="nhac/yeu-em-hon-moi-ngay.mp3" loop></audio>
 
-<div class="slide-container">
+<!-- HOA RƠI -->
+<canvas id="flowerCanvas"></canvas>
 
-    <!-- ===== SLIDE 1: TRANG BÌA ===== -->
-    <section class="slide cover">
-        <div class="subtitle">Wedding Invitation</div>
-
-        <h1>Thiệp Cưới</h1>
-
-        <div class="couple-name">
-            Trương Anh Tuấn
-            <span class="heart">♥</span>
-            Hoàng Thị Mai Anh
-        </div>
-
-        <p>Trân trọng kính mời</p>
-    </section>
-
-    <!-- ===== SLIDE 2: NHÀ TRAI ===== -->
-    <section class="slide highlight">
-        <h2>🏠 Nhà Trai</h2>
-
-        <div class="info-box">
-            <p>Ông: <strong>Trương Văn Quý</strong></p>
-            <p>Bà: <strong>Ngô Thị Oanh</strong></p>
-            <p>
-                Địa chỉ: Đồng Chùa 2, xã Bình Xa,<br>
-                tỉnh Tuyên Quang
-            </p>
-        </div>
-    </section>
-
-    <!-- ===== SLIDE 3: NHÀ GÁI ===== -->
-    <section class="slide highlight">
-        <h2>🏠 Nhà Gái</h2>
-
-        <div class="info-box">
-            <p>Bà: <strong>Hoàng Thị Thoa</strong></p>
-            <p>
-                Địa chỉ: Hữu Lũng,<br>
-                tỉnh Lạng Sơn
-            </p>
-        </div>
-    </section>
-
-    <!-- ===== SLIDE 4: THỜI GIAN & ĐỊA ĐIỂM ===== -->
-    <section class="slide">
-        <h2>⏰ Thời Gian & Địa Điểm</h2>
-
-        <div class="info-box">
-            <p>🗓 <strong>Ngày:</strong> 26 / 02 / 2026</p>
-            <p>🕰 <strong>Giờ:</strong> 16 : 30</p>
-            <p>
-                📍 <strong>Địa điểm:</strong><br>
-                Tại nhà trai – Thôn 7,<br>
-                Đồng Chùa 2, Bình Xa,<br>
-                Tuyên Quang
-            </p>
-        </div>
-
-        <!-- Countdown (JS xử lý sau) -->
-        <div class="countdown">
-            <div class="time-box">
-                <span id="days">--</span>
-                <small>Ngày</small>
-            </div>
-            <div class="time-box">
-                <span id="hours">--</span>
-                <small>Giờ</small>
-            </div>
-            <div class="time-box">
-                <span id="minutes">--</span>
-                <small>Phút</small>
-            </div>
-        </div>
-    </section>
-
-    <!-- ===== SLIDE 5: ẢNH CƯỚI ===== -->
-    <section class="slide highlight">
-        <h2>💍 Khoảnh Khắc Của Chúng Tôi</h2>
-
-        <div class="slider">
-            <img src="ẢNH/3840x2160-LostInTheSecret (1).png" alt="Ảnh cưới 1">
-            <img src="https://picsum.photos/600/800?2" alt="Ảnh cưới 2">
-            <img src="https://picsum.photos/600/800?3" alt="Ảnh cưới 3">
-        </div>
-    </section>
-
-    <!-- ===== SLIDE 6: LỜI CẢM ƠN ===== -->
-    <section class="slide end">
-        <h2>❤️ Trân Trọng Kính Mời ❤️</h2>
-
-        <p>
-            Sự hiện diện của quý khách<br>
-            là niềm vinh hạnh cho gia đình chúng tôi
-        </p>
-
-        <div class="footer-text">
-            Trân trọng cảm ơn
-        </div>
-    </section>
-
+<!-- PHONG BÌ -->
+<div class="envelope" id="envelope">
+    <div class="left"></div>
+    <div class="right"></div>
+   <button id="openBtn">
+  <span>THIỆP MỜI</span>
+</button>
 </div>
+<!-- NÚT -->
+<div class="music-btn" id="musicBtn">🔊</div>
+<div class="share-btn" id="shareBtn">📤</div>
 
+<!-- SLIDER -->
+<div class="slider hidden" id="slider">
+
+<section class="slide active">
+        <h1 class="write editable" data-key="title" data-text="Thiệp Mời"></h1>
+
+         <p class="fade write editable"
+            data-key="invite"
+            data-text="Trân trọng kính mời bạn cùng gia đình  
+                        tới dự bữa cơm thân mật chung vui cùng hai chúng tôi"></p>
+       <h2 class="fade write editable"
+             data-key="couple"
+             data-text="ANH TUẤN ❤️ MAI ANH"></h2>
+             <img src="anh/happy-wedding.gif">
+</section>
+</div>
+<section class="slide">
+    <div class="tetel">
+         <h2>ĐẠI DIỆN GIA ĐÌNH</h2>
+    </div>
+    <div class="boxes">
+        <div class="box">
+            <h3>Nhà Trai</h3>
+            <h4>chú rể : TRƯƠNG ANH TUẤN</h4>
+            <p>bố:<strong>TRƯƠNG VĂN QUÝ</strong></p>
+            <p>mẹ:<strong>NGÔ THỊ OANH</strong></p>
+            <h4>hôn lễ được tổ chức tại:</h4>
+            <p>Đ/c: thôn ĐỒNG CHÙA 2,xã BÌNH XA,tỉnh TUYÊN QUANG</p>
+            <p>17:00 Ngày: 27/2/2026</p>
+            <p>(tức ngày : 11/1/2026 Âm lịch)</p>
+        </div>
+        <div class="arrow">💞</div>
+        <div class="in-box">
+            <h3>Nhà Gái</h3>
+            <h4>cố râu : HOÀNG THỊ MAI ANH</h4>
+            <p>mẹ:<strong>HOÀNG THỊ THOA</strong></p>
+            <h4>hôn lễ được tổ chức tại:</h4>
+            <p>Đ/c: thôn NÀ CANH,xã BẰNG MẠCH,tỉnh LẠNG SƠN </p>
+            <p>Ngày:26/2/2026</p>
+            <P>(tức ngày : 10/1/2026 Âm lịch)</P>
+        </div>
+    </div>
+    <p class="thanks">Trong ngày trọng đại này, chúng tôi vô cùng trân quý
+tình cảm, sự quan tâm và những lời chúc tốt đẹp của Quý khách.<br>
+Sự góp mặt của Quý khách chính là món quà ý nghĩa nhất,
+góp phần làm cho hôn lễ của chúng tôi thêm trọn vẹn và đáng nhớ</p>
+     <h2 class="dem">⏳ Đếm ngược ngày cưới</h2>
+      <div class="countdown">
+          <div><span id="days">00</span><small>Ngày</small></div>
+         <div><span id="hours">00</span><small>Giờ</small></div>
+          <div><span id="minutes">00</span><small>Phút</small></div>
+        <div><span id="seconds">00</span><small>Giây</small></div>
+    </div>
+</section>
+<section class="slide">
+    <h2>Khoảnh khắc của chúng tôi</h2>
+    <div class="gallery gallery-float">
+        <img src="anh/2025-12-23-mai-anh0309.png">
+        <img src="anh/2025-12-23-mai-anh0257.png">
+        <img src="anh/2025-12-23-mai-anh0339.png">
+        <img src="anh/2025-12-23-mai-anh0538.png">
+        <img src="anh/2025-12-23-mai-anh0349.png">
+        <img src="anh/2025-12-23-mai-anh0464.png">
+    </div>
+</section>
+<div class="lightbox" id="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-img" id="lightboxImg">
+    <span class="nav prev">&#10094;</span>
+    <span class="nav next">&#10095;</span>
+</div>
+<section class="slide">
+  <h2 id="adminTrigger">💌 Lời chúc từ khách mời</h2>
+
+  <form id="wishForm">
+
+  <input
+    type="text"
+    id="name"
+    name="name"
+    placeholder="Tên của bạn"
+    required
+  >
+
+  <textarea
+    id="message"
+    name="message"
+    placeholder="Gửi lời chúc đến cô dâu chú rể..."
+    required
+  ></textarea>
+
+  <button type="submit">Gửi lời chúc</button>
+
+</form>
+  <div class="wish-list" id="wishList"></div>
+</section>
+
+<div class="nav">
+    <button id="prev">‹</button>
+    <button id="next">›</button>
+</div>
 <script src="script.js"></script>
+<script>
+function typeWriter(el, speed = 80) {
+    const text = el.dataset.text;
+    if (!text || el.classList.contains("typed")) return;
+
+    el.innerHTML = "";
+    el.classList.add("cursor");
+
+    let i = 0;
+    function typing() {
+        if (i < text.length) {
+            el.innerHTML += text[i] === "\n" ? "<br>" : text[i];
+            i++;
+            setTimeout(typing, speed);
+        } else {
+            el.classList.remove("cursor");
+            el.classList.add("typed"); // đánh dấu đã chạy xong
+        }
+    }
+    typing();
+}
+
+// chạy lần lượt từng dòng trong slide
+function runTypingInSlide(slide) {
+    const elements = slide.querySelectorAll(".write");
+    let delay = 2500;
+
+    elements.forEach(el => {
+        setTimeout(() => typeWriter(el, 90), delay);
+        delay += (el.dataset.text?.length || 10) * 110 + 400;
+    });
+}
+
+// chỉ chạy cho slide đang active
+document.addEventListener("DOMContentLoaded", () => {
+    const activeSlide = document.querySelector(".slide.active");
+    if (activeSlide) runTypingInSlide(activeSlide);
+    /* ================= ADMIN EDIT TEXT ================= */
+if (isAdmin) {
+  document.querySelectorAll(".editable").forEach(el => {
+    el.contentEditable = "true";
+    el.style.outline = "1px dashed #ffb6c1";
+
+    const key = el.dataset.key;
+    const saved = localStorage.getItem("text_" + key);
+
+    if (saved) {
+      el.innerText = saved;
+      if (el.dataset.text) el.dataset.text = saved;
+    }
+
+    el.addEventListener("input", () => {
+      localStorage.setItem("text_" + key, el.innerText);
+      if (el.dataset.text) el.dataset.text = el.innerText;
+    });
+  });
+}
+
+/* ===== LOAD CHO NGƯỜI THƯỜNG ===== */
+document.querySelectorAll(".editable").forEach(el => {
+  const key = el.dataset.key;
+  const saved = localStorage.getItem("text_" + key);
+  if (saved) {
+    el.innerText = saved;
+    if (el.dataset.text) el.dataset.text = saved;
+  }
+});
+
+});
+</script>
+<button id="logoutAdmin" class="admin-logout" style="display:none">
+  🚪 Thoát
+</button>
 </body>
 </html>
